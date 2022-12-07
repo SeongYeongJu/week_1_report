@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Todo List</p>
       </header>
+      <InputArea />
     </div>
   );
+}
+
+function InputArea() {
+  const [titleValue, titleSetValue] = useState("");
+  const [todoValue, todoSetValue] = useState("");
+
+  const titleOnChangeHandler = (e) => {
+    const titleInputValue = e.target.value;
+    titleSetValue(titleInputValue);
+  };
+
+  const todoOnChangeHandler = (e) => {
+    const todoInputValue = e.target.value;
+    todoSetValue(todoInputValue);
+  };
+
+  // function onClickHandler() {
+
+  // }
+
+  return (
+    <div>
+      <div className="inputDiv">
+        <p>Title</p>
+        <input type="text" onChange={titleOnChangeHandler} value={titleValue} />
+        <p>Todo</p>
+        <input type="text" onChange={todoOnChangeHandler} value={todoValue} />
+        <button className="input-button">작성하기</button>
+      </div>
+      <ListArea />
+    </div>
+  );
+}
+
+function ListArea({ titleValue, todoValue }) {
+  return <div>{titleValue}</div>;
 }
 
 export default App;
